@@ -26,6 +26,7 @@ public class StatusController : MonoBehaviour
     public ScreenStatus currScreenStatus;
 
     public bool navDebugPrintOn;
+    public bool gatherDebugPrintOn;
 
     /* InputAction */
     public InputAction tapAction;
@@ -36,6 +37,8 @@ public class StatusController : MonoBehaviour
 
     public Dictionary<WorldStatus, int> worldStatusToCameraX;
     public Dictionary<ScreenStatus, GameObject> screenStatusToActualScreen;
+
+    public GatherMinigameController gatherMinigameController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -65,6 +68,14 @@ public class StatusController : MonoBehaviour
     public void NavDebugPrint(string str)
     {
         if (navDebugPrintOn)
+        {
+            Debug.Log(str);
+        }
+    }
+
+    public void GatherDebugPrint(string str)
+    {
+        if (gatherDebugPrintOn)
         {
             Debug.Log(str);
         }
@@ -132,6 +143,19 @@ public class StatusController : MonoBehaviour
 
     // --------
 
+    private void OnTapPerformedDelegateHelper(Collider2D hit)
+    {
+        // previously checked hit != null. was there a way to express this, or was that just Typescript?
+        if (currWorldStatus == WorldStatus.Gather)
+        {
+            gatherMinigameController.GatherMinigameOnHit(hit);
+        }
+        else
+        {
+            GatherDebugPrint("OnTapPerformedDelegateHelper: WorldStatus is not one of the defined ones");
+        }
+    }
+
     private void OnTapPerformed(InputAction.CallbackContext context)
     {
         // Get the tap position
@@ -158,6 +182,7 @@ public class StatusController : MonoBehaviour
             else
             {
                 NavDebugPrint("OnTapPerformed: neither WorldNavId nor ScreenNavId");
+                OnTapPerformedDelegateHelper(hit);
             }
         }
         else
