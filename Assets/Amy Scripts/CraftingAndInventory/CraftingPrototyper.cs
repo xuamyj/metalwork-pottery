@@ -26,24 +26,7 @@ public class CraftingPrototyper : MonoBehaviour
                 allowedPots[template.material].Add(template.shape);
             }
         }
-        foreach (Material material in allowedPots.Keys)
-        {
-            // Get the material name or some identifier
-            string materialName = material.ToString();
-
-            // Get the shapes for this material
-            HashSet<Shape> shapes = allowedPots[material];
-
-            // Format the shapes into a comma-separated string
-            string shapesString = "";
-            foreach (Shape s in shapes)
-            {
-                shapesString += s + ", ";
-            }
-
-            // Print the material and its associated shapes
-            Debug.Log($"Material: {materialName} → Shapes: [{shapesString}]");
-        }
+        Debug.Log(allowedPots.ToDebugString());
     }
 
     // Update is called once per frame

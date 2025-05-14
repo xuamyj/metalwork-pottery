@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-// Put this in a static class in your project
 public static class CollectionExtensions
 {
     // Extension method for List<T>
@@ -40,10 +39,7 @@ public static class CollectionExtensions
         if (dict.Count == 0)
             return "{}";
 
-        StringBuilder sb = new StringBuilder();
-        sb.Append("{\n");
-
-        foreach (var kvp in dict)
+        var entries = dict.Select(kvp =>
         {
             string valueString;
 
@@ -53,14 +49,13 @@ public static class CollectionExtensions
             else
                 valueString = kvp.Value?.ToString() ?? "null";
 
-            sb.Append($"  {kvp.Key?.ToString() ?? "null"} => {valueString}\n");
-        }
+            return $"{kvp.Key?.ToString() ?? "null"} => {valueString}";
+        });
 
-        sb.Append("}");
-        return sb.ToString();
+        return "{" + string.Join(", ", entries) + "}";
     }
 
-    // Special case for Dictionary with HashSet or List values
+    // Special case for Dictionary with HashSet values
     public static string ToDebugString<TKey, TValue>(this Dictionary<TKey, HashSet<TValue>> dict)
     {
         if (dict == null)
@@ -69,17 +64,11 @@ public static class CollectionExtensions
         if (dict.Count == 0)
             return "{}";
 
-        StringBuilder sb = new StringBuilder();
-        sb.Append("{\n");
+        var entries = dict.Select(kvp =>
+            $"{kvp.Key?.ToString() ?? "null"} => {kvp.Value.ToDebugString()}"
+        );
 
-        foreach (var kvp in dict)
-        {
-            string valueString = kvp.Value.ToDebugString();
-            sb.Append($"  {kvp.Key?.ToString() ?? "null"} => {valueString}\n");
-        }
-
-        sb.Append("}");
-        return sb.ToString();
+        return "{" + string.Join(", ", entries) + "}";
     }
 
     // Similar method for Dictionary with List values
@@ -91,16 +80,10 @@ public static class CollectionExtensions
         if (dict.Count == 0)
             return "{}";
 
-        StringBuilder sb = new StringBuilder();
-        sb.Append("{\n");
+        var entries = dict.Select(kvp =>
+            $"{kvp.Key?.ToString() ?? "null"} => {kvp.Value.ToDebugString()}"
+        );
 
-        foreach (var kvp in dict)
-        {
-            string valueString = kvp.Value.ToDebugString();
-            sb.Append($"  {kvp.Key?.ToString() ?? "null"} => {valueString}\n");
-        }
-
-        sb.Append("}");
-        return sb.ToString();
+        return "{" + string.Join(", ", entries) + "}";
     }
 }
