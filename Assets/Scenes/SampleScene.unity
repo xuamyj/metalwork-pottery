@@ -1441,8 +1441,8 @@ GameObject:
   - component: {fileID: 446162434}
   - component: {fileID: 446162435}
   - component: {fileID: 446162437}
-  - component: {fileID: 446162436}
   - component: {fileID: 446162438}
+  - component: {fileID: 446162436}
   m_Layer: 0
   m_Name: StatusController
   m_TagString: GameController
@@ -1556,9 +1556,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 446162433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea80af2ba5af4ff9881675ff49cf59a, type: 3}
+  m_Script: {fileID: 11500000, guid: c3cca178076af4f639ff865676f341e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreController: {fileID: 446162436}
 --- !u!1 &470359611
 GameObject:
   m_ObjectHideFlags: 0

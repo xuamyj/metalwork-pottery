@@ -77,16 +77,21 @@ public static class LevelPotsList
     }
 }
 
-public class Pot : MonoBehaviour
+// then make a CraftingController + InventoryController. CraftingController determines what combos are allowed based on lvl + LevelPotsList, makes pots, puts them in InventoryController. InventoryController allows you to inspect pots (and later move, delete, sell, etc)
+public class Pot
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
+    public Material material;
+    public Shape shape;
+    public ColorAccent colorAccent;
+    public string visibleName;
+    public string img;
 
-    // Update is called once per frame
-    void Update()
+    public Pot(Material m, Shape sh, ColorAccent ca) // later add img
     {
-
+        this.material = m;
+        this.shape = sh;
+        this.colorAccent = ca;
+        this.visibleName = this.colorAccent.ToString() + this.material.ToString() + this.shape.ToString();
+        this.img = ""; // TODO: Add img and make it work
     }
 }
