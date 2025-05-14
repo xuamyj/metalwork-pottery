@@ -1,6 +1,80 @@
 - status is basically nav
 - score could also be called resources (but between the two i found score LESS confusing)
 
+
+
+==== 5.13.25
+
+Tuple<Material, Shape> potRecipe;
+
+List<PotRecipes> {
+    0: Set()
+    1: Set(< Terracotta, Flowerpot > )
+    2: Set(< Stoneware, Bowl >, < Stoneware, plate >)
+    3: Set(< Stoneware, Mug >)
+}
+
+// NOT HERE
+// - use my lvel, loop through to see what materials i can use, and what things i can mkae from those matierals. [or reverse]
+/*
+// make a monobehavior, put these as public variables, init in Start(), everyone drags or references this guy 
++ you can make multiple versions and save them as prefabs or something
+- you can lose it? you need to store the reference to the monobehavior from all the objects that use it, and like set it up manually (drag statuscontroller to  every single thing that knows anything about pots)
+
+// ACTUAL instances, kind of like what I was going to do with Pot, which is NOT a monobeahiovr
+- not real, if i did this it would still have to live in a monobeahvior 
+
+// STATIC instances, which there's only a single one, but how you achieve is a little mythical to me
++ probably this because you got one thing. should be static CLASS, not static magic words monobehavior. becuase it doesn't need to be a monobehavior
+
+// SERIALIZABLE something? which is something Dennis mentioned once
+- use for configuration of MULTIPLE things, like characters. not for single thing, like this LevelRecipeData or whatever
+*/
+
+public class PotTemplate
+{
+    public Material material;
+    public Shape shape;
+
+    public PotTemplate(Material material, Shape shape)
+    {
+        this.material = material;
+        this.shape = shape;
+    }
+} // better than tuple because the contents are named 
+
+public static class LevelPotsList
+{
+    // this runs as soon as you start the game
+    public static List<HashSet<PotTemplate>> list = LevelPotsList.getList();
+    
+    private static List<HashSet<PotTemplate>> list = null;
+    
+    // new List<HashSet<PotTemplate>>{
+    //     new HashSet<PotTemplate>{new PotTemplate(Material.Terracotta, Shape.Bowl)},
+    //     // new HashSet<PotTemplate>{new PotTemplate()},
+    //     // new HashSet<PotTemplate>{new PotTemplate()},
+    //     // new HashSet<PotTemplate>{new PotTemplate()},
+    // };
+
+    public static List<HashSet<PotTemplate>> getList() {
+        // if list is defined, return list 
+        // otherwise, run my code to initialize it 
+        if (list) {
+            return list;
+        }
+
+        list = new List<HashSet<PotTemplate>>();
+        for(Material i = Material.Kaolin; i <= Material.Terracotta; ++i) {
+            list.Add(new HashSet<PotTemplate>{new PotTemplate(i, Shape.Bowl)});
+        }
+
+        return list; 
+    } 
+}
+
+====
+
 1. GatherMinigameController script should be dragged to StatusController obj or GatherMinigame obj?
 2. I imagine StartGatherMinigame to hide PLAY button and show E C G CONTINUE buttons. I imagine E C G buttons to be hooked to genRandomExp(), genRandomClay(), and genRandomGold() respectively. And then I imagine CONTINUE button to move you to the main screen (so like, StatusController.GoToWorld(WorldStatus.Main) ) and also show PLAY button / hide E C G CONTINUE for when you come back. I could definitely set this up with Canvas buttons but the whole point is to make scaffolding for the "Gather minigame world" not like just a "Gather minigame screen" if that makes sense
 3. Right now my biggest problem is that my OnTapPerfomed lives in my StatusController and I don't know how to like.. "transition" it to a GatherMinigameOnTapPerformed function when I'm in WorldStatus.Gather. Actually I don't want to "transition" it completely, as it also allows me to do the navs (like click on Quests Inventory Settings X etc). But I feel it would be WEIRD to have an extremely long and complex thing in StatusController.OnTapPerformed() that fiddles with GatherMinigame (AND all other minigame worlds) AND itself
