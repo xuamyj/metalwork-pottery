@@ -64,11 +64,11 @@ public static class LevelPotsList
         list = new List<HashSet<PotTemplate>>{
             new HashSet<PotTemplate>{}, // empty for 0
             new HashSet<PotTemplate>{new PotTemplate(Material.Terracotta, Shape.Flowerpot)}, // 1
-            new HashSet<PotTemplate>{new PotTemplate(Material.Terracotta, Shape.Bowl), new PotTemplate(Material.Terracotta, Shape.Plate)}, // 2
+            new HashSet<PotTemplate>{new PotTemplate(Material.Terracotta, Shape.Plate), new PotTemplate(Material.Terracotta, Shape.Bowl)}, // 2
             new HashSet<PotTemplate>{new PotTemplate(Material.Stoneware, Shape.Mug)}, // 3
-            new HashSet<PotTemplate>{new PotTemplate(Material.Stoneware, Shape.Bowl), new PotTemplate(Material.Stoneware, Shape.Plate)}, // 4
+            new HashSet<PotTemplate>{new PotTemplate(Material.Stoneware, Shape.Plate), new PotTemplate(Material.Stoneware, Shape.Bowl)}, // 4
             new HashSet<PotTemplate>{new PotTemplate(Material.Stoneware, Shape.Teapot)}, // 5
-            new HashSet<PotTemplate>{new PotTemplate(Material.Kaolin, Shape.Bowl), new PotTemplate(Material.Kaolin, Shape.Plate)}, // 6
+            new HashSet<PotTemplate>{new PotTemplate(Material.Kaolin, Shape.Plate), new PotTemplate(Material.Kaolin, Shape.Bowl)}, // 6
             new HashSet<PotTemplate>{new PotTemplate(Material.Kaolin, Shape.Teacup)}, // 7
             new HashSet<PotTemplate>{new PotTemplate(Material.Terracotta, Shape.RomanTransportAmphora)}, // 8
             new HashSet<PotTemplate>{}, // 9, haven't decided

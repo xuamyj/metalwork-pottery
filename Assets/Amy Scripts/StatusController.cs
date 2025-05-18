@@ -58,10 +58,10 @@ public class StatusController : MonoBehaviour
 
         // ScreenStatus dictionary
         screenStatusToActualScreen = new Dictionary<ScreenStatus, GameObject>();
-        screenStatusToActualScreen[ScreenStatus.Quests] = screens[1];
+        screenStatusToActualScreen[ScreenStatus.Quests] = screens[0];
         screenStatusToActualScreen[ScreenStatus.Inventory] = screens[4];
         screenStatusToActualScreen[ScreenStatus.Showcase] = screens[2];
-        screenStatusToActualScreen[ScreenStatus.Journal] = screens[0];
+        screenStatusToActualScreen[ScreenStatus.Journal] = screens[1];
         screenStatusToActualScreen[ScreenStatus.Settings] = screens[3];
     }
 
