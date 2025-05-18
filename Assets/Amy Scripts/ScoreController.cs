@@ -17,6 +17,8 @@ public class ScoreController : MonoBehaviour
     public TextMeshProUGUI numKaolinText;
     public TextMeshProUGUI goldText;
 
+    public CraftingPrototyper craftingPrototyper; // TOOD: hmmmmmmm
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,6 +41,7 @@ public class ScoreController : MonoBehaviour
         {
             lvl += 1;
             exp -= 100;
+            craftingPrototyper.SetupAllowedPotsMap();
         }
         UpdateAllText();
     }

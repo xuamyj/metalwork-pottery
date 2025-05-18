@@ -11,6 +11,12 @@ public class CraftingPrototyper : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SetupAllowedPotsMap();
+    }
+
+    // EFF: maybe only add instead of re-init and repopulate? 
+    public void SetupAllowedPotsMap()
+    {
         int lvl = scoreController.lvl;
 
         allowedPots = new Dictionary<Material, HashSet<Shape>>();
@@ -26,7 +32,7 @@ public class CraftingPrototyper : MonoBehaviour
                 allowedPots[template.material].Add(template.shape);
             }
         }
-        Debug.Log(allowedPots.ToDebugString());
+        Debug.Log("SetupAllowedPotsMap: " + allowedPots.ToDebugString());
     }
 
     // Update is called once per frame
