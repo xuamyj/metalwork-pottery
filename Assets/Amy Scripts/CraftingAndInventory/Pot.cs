@@ -27,17 +27,15 @@ public enum Shape
 public enum ColorAccent
 {
     Plain,
-    Red,
-    Orange,
-    Yellow,
-    Green,
     Blue,
-    Purple,
+    Green,
+    Yellow,
+    Orange,
+    Red,
     Pink,
-    Brown,
-    Black,
+    Purple,
     Gray,
-    White,
+    Black,
 }
 
 public class PotTemplate
@@ -68,8 +66,8 @@ public static class LevelPotsList
             new HashSet<PotTemplate>{new PotTemplate(Material.Stoneware, Shape.Mug)}, // 3
             new HashSet<PotTemplate>{new PotTemplate(Material.Stoneware, Shape.Plate), new PotTemplate(Material.Stoneware, Shape.Bowl)}, // 4
             new HashSet<PotTemplate>{new PotTemplate(Material.Stoneware, Shape.Teapot)}, // 5
-            new HashSet<PotTemplate>{new PotTemplate(Material.Kaolin, Shape.Plate), new PotTemplate(Material.Kaolin, Shape.Bowl)}, // 6
-            new HashSet<PotTemplate>{new PotTemplate(Material.Kaolin, Shape.Teacup)}, // 7
+            new HashSet<PotTemplate>{new PotTemplate(Material.Kaolin, Shape.Teacup)}, // 6
+            new HashSet<PotTemplate>{new PotTemplate(Material.Kaolin, Shape.Plate), new PotTemplate(Material.Kaolin, Shape.Bowl)}, // 7
             new HashSet<PotTemplate>{new PotTemplate(Material.Terracotta, Shape.RomanTransportAmphora)}, // 8
             new HashSet<PotTemplate>{}, // 9, haven't decided
         };
