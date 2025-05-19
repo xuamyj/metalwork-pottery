@@ -4,7 +4,10 @@ using UnityEngine;
 public class InventoryPrototyper : MonoBehaviour
 {
     // consts
-    public const int NUM_INVENTORY_SLOTS = 60;
+    public const int NUM_INVENTORY_SLOTS = 24;
+
+    /* DRAGGABLE */
+    public List<GameObject> slots;
 
     // data
     public List<Pot> inventoryData; // TODO: I guess eventually this could contain other fun things like gemstones or special materials? but stick to pots for now

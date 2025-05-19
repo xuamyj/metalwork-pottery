@@ -22,6 +22,10 @@ public enum ScreenStatus
 
 public class StatusController : MonoBehaviour
 {
+    // consts
+    public const int CRAFT_CONTENT_TRANSFORM_TOP = 0;
+    public const int CRAFT_CONTENT_TRANSFORM_BOTTOM = -400;
+
     public WorldStatus currWorldStatus;
     public ScreenStatus currScreenStatus;
 
@@ -94,8 +98,8 @@ public class StatusController : MonoBehaviour
 
             // You can also set these values
             RectTransform craftRT = craftInnerContent.GetComponent<RectTransform>();
-            craftRT.offsetMax = new Vector2(craftRT.offsetMax.x, 0);
-            craftRT.offsetMin = new Vector2(craftRT.offsetMin.x, -400);
+            craftRT.offsetMax = new Vector2(craftRT.offsetMax.x, CRAFT_CONTENT_TRANSFORM_TOP);
+            craftRT.offsetMin = new Vector2(craftRT.offsetMin.x, CRAFT_CONTENT_TRANSFORM_BOTTOM);
         }
         else if (currWorldStatus != WorldStatus.Craft && chosenWorld == WorldStatus.Craft)
         {
