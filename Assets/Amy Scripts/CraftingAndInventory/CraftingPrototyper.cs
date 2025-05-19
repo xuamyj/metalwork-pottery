@@ -7,6 +7,7 @@ public class CraftingPrototyper : MonoBehaviour
 
     /* DRAGGABLE */
     public ScoreController scoreController;
+    public GameObject craftScreen;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +34,11 @@ public class CraftingPrototyper : MonoBehaviour
             }
         }
         Debug.Log("SetupAllowedPotsMap: " + allowedPots.ToDebugString());
+    }
+
+    public void OnClickStartCraft()
+    {
+        craftScreen.SetActive(false);
     }
 
     // Update is called once per frame

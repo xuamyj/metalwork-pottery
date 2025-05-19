@@ -34,6 +34,8 @@ public class StatusController : MonoBehaviour
     /* DRAGGABLE */
     public Camera mainCamera;
     public List<GameObject> screens;
+    public GameObject craftScreen;
+    public GameObject craftInnerContent;
 
     public Dictionary<WorldStatus, int> worldStatusToCameraX;
     public Dictionary<ScreenStatus, GameObject> screenStatusToActualScreen;
@@ -84,6 +86,21 @@ public class StatusController : MonoBehaviour
     public void GoToWorld(WorldStatus chosenWorld)
     {
         CloseAllScreens();
+
+        // Handle Craft screen
+        if (currWorldStatus == WorldStatus.Craft && chosenWorld != WorldStatus.Craft)
+        {
+            craftScreen.SetActive(false);
+
+            // You can also set these values
+            RectTransform craftRT = craftInnerContent.GetComponent<RectTransform>();
+            craftRT.offsetMax = new Vector2(craftRT.offsetMax.x, 0);
+            craftRT.offsetMin = new Vector2(craftRT.offsetMin.x, -400);
+        }
+        else if (currWorldStatus != WorldStatus.Craft && chosenWorld == WorldStatus.Craft)
+        {
+            craftScreen.SetActive(true);
+        }
 
         // Set status
         currWorldStatus = chosenWorld;
