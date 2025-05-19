@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 53066895}
   - component: {fileID: 53066894}
   m_Layer: 5
-  m_Name: Image1 (2)
+  m_Name: PlainPaint Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 773d9a8e7bc5a47449052281d3267a19, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1648,7 +1648,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 74e4f396982af434a82f45a183acded2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1bd979346240d4e46ad4a201c2a20854, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3749,7 +3749,7 @@ GameObject:
   - component: {fileID: 796949628}
   - component: {fileID: 796949627}
   m_Layer: 5
-  m_Name: Image4 (1)
+  m_Name: PinkPaint Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3794,7 +3794,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 41df7f803d25c44f19f606313f606ca6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6734,7 +6734,7 @@ GameObject:
   - component: {fileID: 930443885}
   - component: {fileID: 930443884}
   m_Layer: 5
-  m_Name: Image4 (2)
+  m_Name: YellowPaint Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6779,7 +6779,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: da61789ab402d49b69600ec8ed899645, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7900,7 +7900,7 @@ GameObject:
   - component: {fileID: 1256195711}
   - component: {fileID: 1256195710}
   m_Layer: 5
-  m_Name: Image3 (1)
+  m_Name: PurplePaint Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7945,7 +7945,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 168eec2e64a0e4039b0db73d1f1959c2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8412,7 +8412,7 @@ GameObject:
   - component: {fileID: 1346151472}
   - component: {fileID: 1346151471}
   m_Layer: 5
-  m_Name: Image1 (1)
+  m_Name: GrayPaint Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8457,7 +8457,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 31490b7b96ebf4903be1aee947b197a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8641,7 +8641,7 @@ GameObject:
   - component: {fileID: 1432720047}
   - component: {fileID: 1432720046}
   m_Layer: 5
-  m_Name: Image3 (2)
+  m_Name: GreenPaint Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8686,7 +8686,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8e8963231fc9d4a2089e637ace60843a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10658,7 +10658,7 @@ GameObject:
   - component: {fileID: 1775409959}
   - component: {fileID: 1775409958}
   m_Layer: 5
-  m_Name: Image2 (1)
+  m_Name: BlackPaint Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10703,7 +10703,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 251652de2cba44479bf20c43a776a3e3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11789,7 +11789,7 @@ GameObject:
   - component: {fileID: 1922956409}
   - component: {fileID: 1922956408}
   m_Layer: 5
-  m_Name: Image2 (2)
+  m_Name: BluePaint Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11834,7 +11834,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 55e38a1b8de99402eb71595750a700ae, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12089,7 +12089,7 @@ GameObject:
   - component: {fileID: 2012857801}
   - component: {fileID: 2012857800}
   m_Layer: 5
-  m_Name: Image5 (1)
+  m_Name: RedPaint Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12134,7 +12134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 96ea4994cd34e476980b09f904e6581b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12491,7 +12491,7 @@ GameObject:
   - component: {fileID: 2096327146}
   - component: {fileID: 2096327145}
   m_Layer: 5
-  m_Name: Image5
+  m_Name: OrangePaint Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12536,7 +12536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 06da05242367e48ab92aff9f089dfc2a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
