@@ -2531,6 +2531,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreController: {fileID: 446162436}
   craftScreen: {fileID: 2096871724}
+  potTemplateImageObjs:
+  - {fileID: 1215564571}
+  - {fileID: 1904672373}
+  - {fileID: 903105411}
+  - {fileID: 1674268157}
+  - {fileID: 992559932}
+  - {fileID: 1038033817}
+  - {fileID: 2100914189}
+  - {fileID: 968839988}
+  - {fileID: 1236308340}
+  - {fileID: 1892305321}
+  - {fileID: 777423877}
 --- !u!114 &446162439
 MonoBehaviour:
   m_ObjectHideFlags: 0

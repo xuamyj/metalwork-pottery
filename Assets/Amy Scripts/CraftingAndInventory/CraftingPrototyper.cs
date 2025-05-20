@@ -4,25 +4,31 @@ using UnityEngine.UI;
 
 public class CraftingPrototyper : MonoBehaviour
 {
+    // consts
+    public const float GRAY_ALPHA = 80f;
+
+    // data
     Dictionary<Material, HashSet<Shape>> allowedPots;
 
     /* DRAGGABLE */
     public ScoreController scoreController;
     public GameObject craftScreen;
+    public List<GameObject> potTemplateImageObjs;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SetupAllowedPotsMap();
+        ColorAllowedPotsUI();
     }
 
     // EFF: maybe only add instead of re-init and repopulate? 
     public void SetupAllowedPotsMap()
     {
-        int lvl = scoreController.lvl;
+        int maxLvl = Mathf.Min(scoreController.lvl, LevelPotsList.list.Count - 1);
 
         allowedPots = new Dictionary<Material, HashSet<Shape>>();
-        for (int i = 0; i <= lvl; i++)
+        for (int i = 0; i <= maxLvl; i++)
         {
             HashSet<PotTemplate> potTemplates = LevelPotsList.list[i];
             foreach (PotTemplate template in potTemplates)
@@ -35,6 +41,36 @@ public class CraftingPrototyper : MonoBehaviour
             }
         }
         Debug.Log("SetupAllowedPotsMap: " + allowedPots.ToDebugString());
+    }
+
+    public void ColorAllowedPotsUI()
+    {
+        foreach (GameObject obj in potTemplateImageObjs)
+        {
+            Button button = obj.GetComponent<Button>();
+            Image image = obj.GetComponent<Image>();
+
+            PotTemplateId potTemplateId = obj.GetComponent<PotTemplateId>();
+            if (!allowedPots.ContainsKey(potTemplateId.PTMaterial) || !allowedPots[potTemplateId.PTMaterial].Contains(potTemplateId.PTShape)) // not allowed, gray and disable button
+            {
+                // Disable the Button component
+                button.interactable = false;
+
+                // Set the Image transparency to 80 (out of 255)
+                Color color = image.color;
+                color.a = GRAY_ALPHA / 255f; // Convert from 0-255 to 0-1 range
+                image.color = color;
+            }
+            else
+            {
+                // Reverse above
+                button.interactable = true;
+                // Color too
+                Color color = image.color;
+                color.a = 1.0f;
+                image.color = color;
+            }
+        }
     }
 
     public void SelectPotTemplateButton(Button clickedButton)

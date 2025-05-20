@@ -42,6 +42,7 @@ public class ScoreController : MonoBehaviour
             lvl += 1;
             exp -= 100;
             craftingPrototyper.SetupAllowedPotsMap();
+            craftingPrototyper.ColorAllowedPotsUI();
         }
         UpdateAllText();
     }
