@@ -2998,6 +2998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreController: {fileID: 446162436}
+  inventoryPrototyper: {fileID: 446162439}
   craftScreen: {fileID: 2096871724}
   potTemplateImageObjs:
   - {fileID: 1215564571}
@@ -3052,6 +3053,8 @@ MonoBehaviour:
   - {fileID: 458242082}
   - {fileID: 989286183}
   - {fileID: 236648583}
+  iSelectSquare: {fileID: 400298186}
+  selectVisibleNameText: {fileID: 1726403759}
   approxNextEmptySlot: 0
 --- !u!114 &446162440
 MonoBehaviour:
@@ -3078,6 +3081,8 @@ MonoBehaviour:
   - {fileID: 1442093945}
   - {fileID: 1386852721}
   - {fileID: 1193698279}
+  sSelectSquare: {fileID: 2118346054}
+  selectVisibleNameText: {fileID: 1288252260}
   approxNextEmptySlot: 0
 --- !u!1001 &458242080
 PrefabInstance:

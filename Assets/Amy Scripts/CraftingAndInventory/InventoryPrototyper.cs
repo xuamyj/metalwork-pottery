@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,10 +11,14 @@ public class InventoryPrototyper : MonoBehaviour
 
     /* DRAGGABLE */
     public List<GameObject> slots;
+    public GameObject iSelectSquare;
+    public TextMeshProUGUI selectVisibleNameText;
 
     // data
     public List<Pot> inventoryData; // TODO: I guess eventually this could contain other fun things like gemstones or special materials? but stick to pots for now
     public int approxNextEmptySlot;
+    // private data
+    private int iSelectedIndex;
 
     void Start()
     {
@@ -23,15 +28,8 @@ public class InventoryPrototyper : MonoBehaviour
             inventoryData.Add(null);
         }
         approxNextEmptySlot = 0;
-    }
 
-    private void IncrementApproxNextEmptySlot(int i)
-    {
-        approxNextEmptySlot = (i + 1);
-        if (approxNextEmptySlot >= NUM_INVENTORY_SLOTS)
-        {
-            approxNextEmptySlot = 0;
-        }
+        iSelectedIndex = -1;
     }
 
     public bool AddPotToInventory(Pot pot)
@@ -122,6 +120,17 @@ public class InventoryPrototyper : MonoBehaviour
         }
 
         return true;
+    }
+
+    // ========
+
+    private void IncrementApproxNextEmptySlot(int i)
+    {
+        approxNextEmptySlot = (i + 1);
+        if (approxNextEmptySlot >= NUM_INVENTORY_SLOTS)
+        {
+            approxNextEmptySlot = 0;
+        }
     }
 
     private bool IsEarlierSlot(int slot1, int slot2)

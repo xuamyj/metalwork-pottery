@@ -20,12 +20,14 @@ public class CraftingPrototyper : MonoBehaviour
 
     /* DRAGGABLE */
     public ScoreController scoreController;
+    public InventoryPrototyper inventoryPrototyper;
+    // and...
     public GameObject craftScreen;
     public List<GameObject> potTemplateImageObjs;
     public GameObject potTemplateSelectSquare;
     public GameObject colorSelectSquare;
     public GameObject craftInnerContent;
-    public GameObject craftTemp;
+    public GameObject craftTemp; // "Go to Inventory" message
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -91,6 +93,8 @@ public class CraftingPrototyper : MonoBehaviour
         }
     }
 
+    // ========
+
     public void SelectPotTemplateButton(Button clickedButton)
     {
         // Move your selection square to the button's position
@@ -112,6 +116,8 @@ public class CraftingPrototyper : MonoBehaviour
         colorSelectSquare.transform.position = clickedButton.transform.position;
         selectedColor = id.PTColor;
     }
+
+    // ========
 
     public void OnEnterCraftScreen()
     {
@@ -137,6 +143,9 @@ public class CraftingPrototyper : MonoBehaviour
     {
         craftScreen.SetActive(false); // hide Craft screen
         craftTemp.SetActive(true); // hide Temp message
+
+        Pot createdPot = new Pot(selectedTemplate.material, selectedTemplate.shape, selectedColor, LevelPotsList.potTemplateToImgPath[selectedTemplate]);
+        inventoryPrototyper.AddPotToInventory(createdPot);
     }
 
     public void OnExitCraftScreen()

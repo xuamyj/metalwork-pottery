@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,10 +11,14 @@ public class ShowcasePrototyper : MonoBehaviour
 
     /* DRAGGABLE */
     public List<GameObject> bigSlots;
+    public GameObject sSelectSquare;
+    public TextMeshProUGUI selectVisibleNameText;
 
     // data
     public List<Pot> showcaseData;
     public int approxNextEmptySlot;
+    // private data
+    private int sSelectedIndex;
 
     void Start()
     {
@@ -23,15 +28,8 @@ public class ShowcasePrototyper : MonoBehaviour
             showcaseData.Add(null);
         }
         approxNextEmptySlot = 0;
-    }
 
-    private void IncrementApproxNextEmptySlot(int i)
-    {
-        approxNextEmptySlot = (i + 1);
-        if (approxNextEmptySlot >= NUM_SHOWCASE_SLOTS)
-        {
-            approxNextEmptySlot = 0;
-        }
+        sSelectedIndex = -1;
     }
 
     public bool AddPotToShowcase(Pot pot)
@@ -122,6 +120,17 @@ public class ShowcasePrototyper : MonoBehaviour
         }
 
         return true;
+    }
+
+    // ========
+
+    private void IncrementApproxNextEmptySlot(int i)
+    {
+        approxNextEmptySlot = (i + 1);
+        if (approxNextEmptySlot >= NUM_SHOWCASE_SLOTS)
+        {
+            approxNextEmptySlot = 0;
+        }
     }
 
     private bool IsEarlierSlot(int slot1, int slot2)
