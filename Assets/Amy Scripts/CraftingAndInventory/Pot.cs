@@ -82,14 +82,14 @@ public class Pot
     public Shape shape;
     public ColorAccent colorAccent;
     public string visibleName;
-    public string img;
+    public string imgPath;
 
-    public Pot(Material m, Shape sh, ColorAccent ca) // later add img
+    public Pot(Material m, Shape sh, ColorAccent ca, string imgPath)
     {
         this.material = m;
         this.shape = sh;
         this.colorAccent = ca;
         this.visibleName = this.colorAccent.ToString() + this.material.ToString() + this.shape.ToString();
-        this.img = ""; // TODO: Add img and make it work
+        this.imgPath = imgPath;
     }
 }

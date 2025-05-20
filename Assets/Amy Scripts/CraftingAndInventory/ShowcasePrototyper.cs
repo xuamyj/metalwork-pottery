@@ -2,25 +2,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryPrototyper : MonoBehaviour
+public class ShowcasePrototyper : MonoBehaviour
 {
     // consts
-    public const int NUM_INVENTORY_SLOTS = 24;
+    public const int NUM_SHOWCASE_SLOTS = 12;
     public const string BLANK_IMG_PATH = "blank";
 
     /* DRAGGABLE */
-    public List<GameObject> slots;
+    public List<GameObject> bigSlots;
 
     // data
-    public List<Pot> inventoryData; // TODO: I guess eventually this could contain other fun things like gemstones or special materials? but stick to pots for now
+    public List<Pot> showcaseData;
     public int approxNextEmptySlot;
 
     void Start()
     {
-        inventoryData = new List<Pot>(NUM_INVENTORY_SLOTS);
-        for (int i = 0; i < NUM_INVENTORY_SLOTS; i++)
+        showcaseData = new List<Pot>(NUM_SHOWCASE_SLOTS);
+        for (int i = 0; i < NUM_SHOWCASE_SLOTS; i++)
         {
-            inventoryData.Add(null);
+            showcaseData.Add(null);
         }
         approxNextEmptySlot = 0;
     }
@@ -28,20 +28,20 @@ public class InventoryPrototyper : MonoBehaviour
     private void IncrementApproxNextEmptySlot(int i)
     {
         approxNextEmptySlot = (i + 1);
-        if (approxNextEmptySlot >= NUM_INVENTORY_SLOTS)
+        if (approxNextEmptySlot >= NUM_SHOWCASE_SLOTS)
         {
             approxNextEmptySlot = 0;
         }
     }
 
-    public bool AddPotToInventory(Pot pot)
+    public bool AddPotToShowcase(Pot pot)
     {
         // look from approxNextEmptySlot to end
-        for (int i = approxNextEmptySlot; i < NUM_INVENTORY_SLOTS; i++)
+        for (int i = approxNextEmptySlot; i < NUM_SHOWCASE_SLOTS; i++)
         {
-            if (inventoryData[i] == null)
+            if (showcaseData[i] == null)
             {
-                inventoryData[i] = pot;
+                showcaseData[i] = pot;
                 SetSlotImage(i, pot.imgPath);
 
                 IncrementApproxNextEmptySlot(i);
@@ -51,70 +51,70 @@ public class InventoryPrototyper : MonoBehaviour
         // if reached end, look from beginning to approxNextEmptySlot
         for (int i = 0; i < approxNextEmptySlot; i++)
         {
-            if (inventoryData[i] == null)
+            if (showcaseData[i] == null)
             {
-                inventoryData[i] = pot;
+                showcaseData[i] = pot;
                 SetSlotImage(i, pot.imgPath);
 
                 IncrementApproxNextEmptySlot(i);
                 return true;
             }
         }
-        // if reached here, inventory is full! 
-        Debug.Log("InventoryPrototyper problem: Inventory is full!");
+        // if reached here, showcase is full! 
+        Debug.Log("ShowcasePrototyper problem: Showcase is full!");
         return false;
     }
 
-    public bool SwapPotLocInInventory(int startLoc, int endLoc)
+    public bool SwapPotLocInShowcase(int startLoc, int endLoc)
     {
         // Check indices are in valid range
-        if (startLoc < 0 || startLoc >= NUM_INVENTORY_SLOTS ||
-            endLoc < 0 || endLoc >= NUM_INVENTORY_SLOTS)
+        if (startLoc < 0 || startLoc >= NUM_SHOWCASE_SLOTS ||
+            endLoc < 0 || endLoc >= NUM_SHOWCASE_SLOTS)
         {
-            Debug.LogWarning("InventoryPrototyper: Invalid inventory indices for swap operation");
+            Debug.LogWarning("ShowcasePrototyper: Invalid showcase indices for swap operation");
             return false;
         }
 
-        if (inventoryData[startLoc] == null)
+        if (showcaseData[startLoc] == null)
         {
             return false;
         }
         // pot in startLoc, check endLoc
-        if (inventoryData[endLoc] != null)
+        if (showcaseData[endLoc] != null)
         {
-            Pot temp = inventoryData[endLoc];
-            inventoryData[endLoc] = inventoryData[startLoc];
-            inventoryData[startLoc] = temp;
+            Pot temp = showcaseData[endLoc];
+            showcaseData[endLoc] = showcaseData[startLoc];
+            showcaseData[startLoc] = temp;
 
             SwapSlotImages(startLoc, endLoc);
         }
         else
         {
-            inventoryData[endLoc] = inventoryData[startLoc];
-            inventoryData[startLoc] = null;
+            showcaseData[endLoc] = showcaseData[startLoc];
+            showcaseData[startLoc] = null;
 
             SwapSlotImages(startLoc, endLoc);
         }
         return true;
     }
 
-    public bool RemovePotFromInventoryLoc(int loc)
+    public bool RemovePotFromShowcaseLoc(int loc)
     {
         // Check indices are in valid range
-        if (loc < 0 || loc >= NUM_INVENTORY_SLOTS)
+        if (loc < 0 || loc >= NUM_SHOWCASE_SLOTS)
         {
-            Debug.LogWarning("InventoryPrototyper: Invalid inventory index for remove operation");
+            Debug.LogWarning("ShowcasePrototyper: Invalid showcase index for remove operation");
             return false;
         }
 
-        if (inventoryData[loc] == null)
+        if (showcaseData[loc] == null)
         {
             return false;
         }
-        inventoryData[loc] = null;
+        showcaseData[loc] = null;
         SetSlotImage(loc, BLANK_IMG_PATH);
 
-        // Optimization: Update approxNextEmptySlot if this slot is "earlier" in the inventory
+        // Optimization: Update approxNextEmptySlot if this slot is "earlier" in the showcase
         // This reduces future search time when adding items
         if (IsEarlierSlot(loc, approxNextEmptySlot))
         {
@@ -139,7 +139,7 @@ public class InventoryPrototyper : MonoBehaviour
     public bool SetSlotImage(int slotIndex, string imagePath)
     {
         // Make sure the slot index is valid
-        if (slotIndex < 0 || slotIndex >= slots.Count)
+        if (slotIndex < 0 || slotIndex >= bigSlots.Count)
         {
             Debug.LogError("Slot index out of range");
             return false;
@@ -154,23 +154,24 @@ public class InventoryPrototyper : MonoBehaviour
             return false;
         }
 
-        Image slotImage = slots[slotIndex].GetComponent<Image>();
+        Image slotImage = bigSlots[slotIndex].GetComponent<Image>();
         slotImage.sprite = newSprite;
         return true;
     }
 
+
     public bool SwapSlotImages(int startLoc, int endLoc)
     {
         // Make sure both indices are valid
-        if (startLoc < 0 || startLoc >= slots.Count || endLoc < 0 || endLoc >= slots.Count)
+        if (startLoc < 0 || startLoc >= bigSlots.Count || endLoc < 0 || endLoc >= bigSlots.Count)
         {
             Debug.LogError("Slot index out of range");
             return false;
         }
 
-        // Get Image components from both slots
-        Image startImage = slots[startLoc].GetComponent<Image>();
-        Image endImage = slots[endLoc].GetComponent<Image>();
+        // Get Image components from both bigSlots
+        Image startImage = bigSlots[startLoc].GetComponent<Image>();
+        Image endImage = bigSlots[endLoc].GetComponent<Image>();
 
         Sprite tempSprite = startImage.sprite;
         startImage.sprite = endImage.sprite;
