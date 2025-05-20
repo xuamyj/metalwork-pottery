@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CraftingPrototyper : MonoBehaviour
 {
@@ -34,6 +35,24 @@ public class CraftingPrototyper : MonoBehaviour
             }
         }
         Debug.Log("SetupAllowedPotsMap: " + allowedPots.ToDebugString());
+    }
+
+    public void SelectPotTemplateButton(Button clickedButton)
+    {
+        // Move your selection square to the button's position
+        // selectionSquare.transform.position = clickedButton.transform.position;
+        Debug.Log("Pressed: " + clickedButton + clickedButton.transform.position);
+        PotTemplateId id = clickedButton.GetComponent<PotTemplateId>();
+        Debug.Log("Check: " + id.PTMaterial + ", " + id.PTShape);
+    }
+
+    public void SelectColorAccentButton(Button clickedButton)
+    {
+        // Move your selection square to the button's position
+        // selectionSquare.transform.position = clickedButton.transform.position;
+        Debug.Log("Pressed: " + clickedButton + clickedButton.transform.position);
+        ColorAccentId id = clickedButton.GetComponent<ColorAccentId>();
+        Debug.Log("Check: " + id.PTColor);
     }
 
     public void OnClickStartCraft()
