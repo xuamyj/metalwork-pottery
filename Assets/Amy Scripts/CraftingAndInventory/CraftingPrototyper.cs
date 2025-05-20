@@ -9,17 +9,24 @@ public class CraftingPrototyper : MonoBehaviour
 
     // data
     Dictionary<Material, HashSet<Shape>> allowedPots;
+    PotTemplate selectedTemplate;
+    ColorAccent selectedColor;
 
     /* DRAGGABLE */
     public ScoreController scoreController;
     public GameObject craftScreen;
     public List<GameObject> potTemplateImageObjs;
+    public GameObject potTemplateSelectSquare;
+    public GameObject colorSelectSquare;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SetupAllowedPotsMap();
         ColorAllowedPotsUI();
+
+        selectedTemplate = new PotTemplate(Material.Terracotta, Shape.Flowerpot);
+        selectedColor = ColorAccent.Plain;
     }
 
     // EFF: maybe only add instead of re-init and repopulate? 
@@ -76,19 +83,23 @@ public class CraftingPrototyper : MonoBehaviour
     public void SelectPotTemplateButton(Button clickedButton)
     {
         // Move your selection square to the button's position
-        // selectionSquare.transform.position = clickedButton.transform.position;
         Debug.Log("Pressed: " + clickedButton + clickedButton.transform.position);
         PotTemplateId id = clickedButton.GetComponent<PotTemplateId>();
         Debug.Log("Check: " + id.PTMaterial + ", " + id.PTShape);
+
+        potTemplateSelectSquare.transform.position = clickedButton.transform.position;
+        selectedTemplate = new PotTemplate(id.PTMaterial, id.PTShape);
     }
 
     public void SelectColorAccentButton(Button clickedButton)
     {
         // Move your selection square to the button's position
-        // selectionSquare.transform.position = clickedButton.transform.position;
         Debug.Log("Pressed: " + clickedButton + clickedButton.transform.position);
         ColorAccentId id = clickedButton.GetComponent<ColorAccentId>();
         Debug.Log("Check: " + id.PTColor);
+
+        colorSelectSquare.transform.position = clickedButton.transform.position;
+        selectedColor = id.PTColor;
     }
 
     public void OnClickStartCraft()
