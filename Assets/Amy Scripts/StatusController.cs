@@ -22,10 +22,6 @@ public enum ScreenStatus
 
 public class StatusController : MonoBehaviour
 {
-    // consts
-    public const int CRAFT_CONTENT_TRANSFORM_TOP = 0;
-    public const int CRAFT_CONTENT_TRANSFORM_BOTTOM = -400;
-
     public WorldStatus currWorldStatus;
     public ScreenStatus currScreenStatus;
 
@@ -38,13 +34,12 @@ public class StatusController : MonoBehaviour
     /* DRAGGABLE */
     public Camera mainCamera;
     public List<GameObject> screens;
-    public GameObject craftScreen;
-    public GameObject craftInnerContent;
 
     public Dictionary<WorldStatus, int> worldStatusToCameraX;
     public Dictionary<ScreenStatus, GameObject> screenStatusToActualScreen;
 
     public GatherMinigameController gatherMinigameController;
+    public CraftingPrototyper craftingPrototyper;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -92,18 +87,13 @@ public class StatusController : MonoBehaviour
         CloseAllScreens();
 
         // Handle Craft screen
-        if (currWorldStatus == WorldStatus.Craft && chosenWorld != WorldStatus.Craft)
+        if (currWorldStatus != WorldStatus.Craft && chosenWorld == WorldStatus.Craft)
         {
-            craftScreen.SetActive(false);
-
-            // You can also set these values
-            RectTransform craftRT = craftInnerContent.GetComponent<RectTransform>();
-            craftRT.offsetMax = new Vector2(craftRT.offsetMax.x, CRAFT_CONTENT_TRANSFORM_TOP);
-            craftRT.offsetMin = new Vector2(craftRT.offsetMin.x, CRAFT_CONTENT_TRANSFORM_BOTTOM);
+            craftingPrototyper.OnEnterCraftScreen();
         }
-        else if (currWorldStatus != WorldStatus.Craft && chosenWorld == WorldStatus.Craft)
+        else if (currWorldStatus == WorldStatus.Craft && chosenWorld != WorldStatus.Craft)
         {
-            craftScreen.SetActive(true);
+            craftingPrototyper.OnExitCraftScreen();
         }
 
         // Set status

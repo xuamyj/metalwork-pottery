@@ -5,7 +5,13 @@ using UnityEngine.UI;
 public class CraftingPrototyper : MonoBehaviour
 {
     // consts
+    public const int CRAFT_CONTENT_TRANSFORM_TOP = 0;
+    public const int CRAFT_CONTENT_TRANSFORM_BOTTOM = -400;
     public const float GRAY_ALPHA = 80f;
+
+    // fake consts
+    Vector2 PT_SELECT_XY;
+    Vector2 C_SELECT_XY;
 
     // data
     Dictionary<Material, HashSet<Shape>> allowedPots;
@@ -18,6 +24,8 @@ public class CraftingPrototyper : MonoBehaviour
     public List<GameObject> potTemplateImageObjs;
     public GameObject potTemplateSelectSquare;
     public GameObject colorSelectSquare;
+    public GameObject craftInnerContent;
+    public GameObject craftTemp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +35,9 @@ public class CraftingPrototyper : MonoBehaviour
 
         selectedTemplate = new PotTemplate(Material.Terracotta, Shape.Flowerpot);
         selectedColor = ColorAccent.Plain;
+
+        PT_SELECT_XY = potTemplateSelectSquare.GetComponent<RectTransform>().anchoredPosition;
+        C_SELECT_XY = colorSelectSquare.GetComponent<RectTransform>().anchoredPosition;
     }
 
     // EFF: maybe only add instead of re-init and repopulate? 
@@ -102,9 +113,36 @@ public class CraftingPrototyper : MonoBehaviour
         selectedColor = id.PTColor;
     }
 
+    public void OnEnterCraftScreen()
+    {
+        // make sure Craft screen "scrolls to top"
+        RectTransform craftRT = craftInnerContent.GetComponent<RectTransform>();
+        craftRT.offsetMax = new Vector2(craftRT.offsetMax.x, CRAFT_CONTENT_TRANSFORM_TOP);
+        craftRT.offsetMin = new Vector2(craftRT.offsetMin.x, CRAFT_CONTENT_TRANSFORM_BOTTOM);
+
+        // make sure selected is visually and actually reset
+        RectTransform ptSelectRT = potTemplateSelectSquare.GetComponent<RectTransform>();
+        ptSelectRT.anchoredPosition = PT_SELECT_XY;
+        RectTransform cSelectRT = colorSelectSquare.GetComponent<RectTransform>();
+        cSelectRT.anchoredPosition = C_SELECT_XY;
+        // ... and actually
+        selectedTemplate = new PotTemplate(Material.Terracotta, Shape.Flowerpot);
+        selectedColor = ColorAccent.Plain;
+
+        craftScreen.SetActive(true); // show Craft screen
+        craftTemp.SetActive(false); // hide Temp message
+    }
+
     public void OnClickStartCraft()
     {
-        craftScreen.SetActive(false);
+        craftScreen.SetActive(false); // hide Craft screen
+        craftTemp.SetActive(true); // hide Temp message
+    }
+
+    public void OnExitCraftScreen()
+    {
+        craftScreen.SetActive(false); // hide Craft screen
+        craftTemp.SetActive(false); // hide Temp message
     }
 
     // Update is called once per frame
